@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Pratikchhya Chhetri 💗</title>
+  <meta name="description" content="A Valentine’s website made with love." />
+
+  <style>
+    :root{
+      --beige: #f6efe6;
+      --beige-2: #efe3d6;
+      --pink: #f7c6d0;
+      --pink-2:#f2a9b8;
+      --rose: #d77b8a;
+      --ink: #2a2322;
+      --card: rgba(255,255,255,.62);
+      --stroke: rgba(42,35,34,.12);
+      --shadow: 0 18px 60px rgba(42,35,34,.12);
+      --radius: 26px;
+      --radius-2: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:
+        radial-gradient(900px 520px at 20% 10%, rgba(247,198,208,.55), transparent 55%),
+        radial-gradient(900px 520px at 85% 25%, rgba(246,239,230,.9), transparent 58%),
+        radial-gradient(720px 520px at 70% 90%, rgba(242,169,184,.25), transparent 60%),
+        linear-gradient(180deg, var(--beige), var(--beige-2));
+      overflow-x:hidden;
+    }
+
+    /* floating hearts */
+    .hearts{
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.85;
+      filter: drop-shadow(0 8px 18px rgba(42,35,34,.12));
+    }
+    .heart{
+      position:absolute;
+      width:16px; height:16px;
+      transform: rotate(45deg);
+      background: rgba(242,169,184,.55);
+      border: 1px solid rgba(215,123,138,.18);
+      border-radius: 4px;
+      animation: floatUp linear infinite;
+    }
+    .heart:before, .heart:after{
+      content:"";
+      position:absolute;
+      width:16px; height:16px;
+      background: inherit;
+      border: inherit;
+      border-radius: 50%;
+    }
+    .heart:before{ left:-8px; top:0; }
+    .heart:after{ top:-8px; left:0; }
+
+    @keyframes floatUp{
+      0%   { transform: translateY(0) rotate(45deg) scale(1); opacity:0; }
+      8%   { opacity:.9; }
+      80%  { opacity:.9; }
+      100% { transform: translateY(-120vh) rotate(45deg) scale(1.15); opacity:0; }
+    }
+
+    header{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(12px);
+      background: rgba(246,239,230,.55);
+      border-bottom: 1px solid rgba(42,35,34,.08);
+    }
+    .wrap{
+      max-width: 1020px;
+      margin:0 auto;
+      padding: 18px 18px;
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .badge{
+      display:flex; align-items:center; gap:10px;
+      font-weight:650;
+      letter-spacing:.2px;
+    }
+    .dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--pink), var(--rose));
+      box-shadow: 0 0 0 6px rgba(242,169,184,.18);
+    }
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(255,255,255,.35);
+      font-size: 13px;
+    }
+    .pill button{
+      border:0;
+      background: linear-gradient(180deg, rgba(247,198,208,.9), rgba(242,169,184,.85));
+      color: var(--ink);
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .pill button:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+    .pill button:active{ transform: translateY(0px) scale(.98); }
+
+    main{ padding: 26px 0 56px; }
+
+    .hero{
+      position:relative;
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      border: 1px solid var(--stroke);
+      background:
+        radial-gradient(520px 260px at 20% 30%, rgba(247,198,208,.55), transparent 60%),
+        radial-gradient(520px 260px at 85% 20%, rgba(255,255,255,.6), transparent 62%),
+        rgba(255,255,255,.42);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 880px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(246,239,230,.55);
+      font-size: 13px;
+      font-weight: 650;
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.6px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      font-size: 16px;
+      line-height:1.6;
+      opacity:.9;
+      max-width: 60ch;
+    }
+
+    .ctaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 16px;
+    }
+    .btn{
+      border: 1px solid rgba(42,35,34,.12);
+      background: rgba(255,255,255,.55);
+      padding: 12px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 750;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(247,198,208,.92), rgba(242,169,184,.88));
+      border-color: rgba(215,123,138,.22);
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0px) scale(.99); }
+
+    .sideCard{
+      border-radius: var(--radius);
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(255,255,255,.48);
+      box-shadow: 0 14px 40px rgba(42,35,34,.10);
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height: 220px;
+    }
+    .sideTitle{
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .note{
+      font-size: 14px;
+      line-height:1.55;
+      opacity:.88;
+    }
+    .sparkle{
+      width:100%;
+      height: 120px;
+      border-radius: 18px;
+      border: 1px dashed rgba(215,123,138,.30);
+      background:
+        radial-gradient(18px 18px at 18% 40%, rgba(242,169,184,.55), transparent 60%),
+        radial-gradient(14px 14px at 38% 25%, rgba(247,198,208,.55), transparent 60%),
+        radial-gradient(18px 18px at 65% 70%, rgba(247,198,208,.55), transparent 60%),
+        radial-gradient(14px 14px at 82% 35%, rgba(242,169,184,.45), transparent 60%),
+        rgba(246,239,230,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .sparkle:after{
+      content:"";
+      position:absolute;
+      inset:-60px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 35%);
+      animation: sweep 5.5s ease-in-out infinite;
+      transform: rotate(12deg);
+    }
+    @keyframes sweep{
+      0%{ transform: translateX(-10%) translateY(0%) rotate(12deg); opacity:.4; }
+      50%{ transform: translateX(20%) translateY(8%) rotate(12deg); opacity:.7; }
+      100%{ transform: translateX(-10%) translateY(0%) rotate(12deg); opacity:.4; }
+    }
+
+    .section{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 6;
+      border-radius: var(--radius);
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(255,255,255,.50);
+      box-shadow: 0 14px 42px rgba(42,35,34,.10);
+      padding: 18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card.small{ grid-column: span 4; }
+    @media (max-width: 880px){
+      .card{ grid-column: span 12; }
+      .card.small{ grid-column: span 12; }
+    }
+    .card h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .muted{
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.55;
+      opacity:.86;
+    }
+
+    .placeholder{
+      margin-top: 12px;
+      border-radius: 18px;
+      border: 1px dashed rgba(42,35,34,.18);
+      background: rgba(246,239,230,.42);
+      padding: 14px;
+      font-size: 14px;
+      line-height: 1.55;
+      opacity:.92;
+    }
+
+    footer{
+      padding: 20px 0 36px;
+      opacity:.85;
+    }
+    .footerRow{
+      border-top: 1px solid rgba(42,35,34,.10);
+      padding-top: 16px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      font-size: 13px;
+    }
+
+    /* modal */
+    .overlay{
+      position:fixed; inset:0;
+      background: rgba(20,16,16,.30);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 50;
+    }
+    .overlay.show{ display:flex; }
+    .modal{
+      width:min(720px, 100%);
+      border-radius: 26px;
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(42,35,34,.12);
+      box-shadow: 0 18px 70px rgba(42,35,34,.18);
+      overflow:hidden;
+    }
+    .modalTop{
+      padding: 16px 16px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom: 1px solid rgba(42,35,34,.08);
+      background:
+        radial-gradient(520px 200px at 10% 20%, rgba(247,198,208,.55), transparent 60%),
+        rgba(246,239,230,.45);
+    }
+    .modalTop h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .modalTop p{
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.45;
+      opacity:.85;
+    }
+    .close{
+      border: 1px solid rgba(42,35,34,.14);
+      background: rgba(255,255,255,.55);
+      border-radius: 14px;
+      padding: 10px 12px;
+      cursor:pointer;
+      font-weight: 800;
+    }
+    .modalBody{
+      padding: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 720px){
+      .modalBody{ grid-template-columns: 1fr; }
+    }
+    .tile{
+      border-radius: 18px;
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(255,255,255,.55);
+      padding: 14px;
+    }
+    .tile b{ display:block; margin-bottom:6px; }
+    .tile span{ font-size: 13px; opacity:.86; line-height: 1.5; display:block; }
+
+    /* small cute floating corner hearts */
+    .cornerHearts{
+      position:absolute;
+      inset:auto -40px -40px auto;
+      width: 220px;
+      height: 220px;
+      opacity:.35;
+      transform: rotate(12deg);
+      background:
+        radial-gradient(12px 12px at 28% 22%, rgba(242,169,184,.85), transparent 70%),
+        radial-gradient(12px 12px at 52% 34%, rgba(247,198,208,.85), transparent 70%),
+        radial-gradient(12px 12px at 40% 58%, rgba(215,123,138,.70), transparent 70%),
+        radial-gradient(12px 12px at 66% 62%, rgba(247,198,208,.85), transparent 70%);
+      filter: blur(.2px);
+      pointer-events:none;
+    }
+
+    /* accessibility: reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .heart, .sparkle:after { animation: none !important; }
+      .btn, .pill button { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- floating hearts layer -->
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="badge">
+          <span class="dot"></span>
+          <span>Valentine’s for <span style="color:var(--rose); font-weight:900;">Pratikchhya Chhetri</span></span>
+        </div>
+
+        <div class="pill">
+          <span id="todayText">💌</span>
+          <button id="openLetterBtn" type="button">Open the Letter</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="cornerHearts"></div>
+
+      <div class="grid">
+        <div>
+          <div class="kicker">💗 Valentine’s Theme • Beige + Pink • Soft & Cozy</div>
+          <h1>Hi Pratikchhya, this little corner of the internet is yours.</h1>
+          <p class="sub">
+            This is a starter theme — you’ll add your photos, your words, and your layout next.
+            For now it’s got the vibe: soft colors, sweet motion, and a romantic feel.
+          </p>
+
+          <div class="ctaRow">
+            <button class="btn primary" id="openSurpriseBtn" type="button">Tap for a Surprise 💞</button>
+            <button class="btn" id="toggleHeartsBtn" type="button">Toggle Hearts</button>
+            <button class="btn" id="changeMoodBtn" type="button">Switch Mood</button>
+          </div>
+        </div>
+
+        <aside class="sideCard">
+          <div class="sideTitle">Preview Panel</div>
+          <div class="sparkle" aria-hidden="true"></div>
+          <p class="note">
+            Placeholders are on purpose — once you tell me what layout + pictures + words you want,
+            I’ll plug them in and make it look *finished*.
+          </p>
+          <p class="note" style="margin-top:-6px;">
+            ✅ Works on mobile<br/>
+            ✅ Clean, modern “love letter” vibe<br/>
+            ✅ Easy to customize
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" style="margin-top:16px;">
+      <div class="card small">
+        <h2>📸 Photos (placeholder)</h2>
+        <p class="muted">We’ll replace these blocks with real pictures later.</p>
+        <div class="placeholder">Drop a photo grid here (3–9 pics). Right now it’s just a placeholder block.</div>
+      </div>
+
+      <div class="card small">
+        <h2>🗓️ Memories (placeholder)</h2>
+        <p class="muted">A timeline of moments, dates, or little notes.</p>
+        <div class="placeholder">Example: “First date”, “Favorite trip”, “That one funny moment”.</div>
+      </div>
+
+      <div class="card small">
+        <h2>🎁 Little Reasons (placeholder)</h2>
+        <p class="muted">A list of things you love about her.</p>
+        <div class="placeholder">We can turn this into cute “reason cards” with heart icons.</div>
+      </div>
+
+      <div class="card">
+        <h2>💌 The Main Letter (placeholder)</h2>
+        <p class="muted">
+          This section is where your real message goes. For now it’s a soft preview so you can judge the vibe.
+        </p>
+        <div class="placeholder">
+          “Pratikchhya, I made this for you because…”<br/>
+          (You’ll tell me the words later and I’ll make it perfect.)
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🌸 Valentine’s Details (placeholder)</h2>
+        <p class="muted">We can add hearts, roses, a poem, or a cute “Will you be my Valentine?” section.</p>
+        <div class="placeholder">
+          Options we can add next:
+          <ul style="margin:10px 0 0; padding-left:18px;">
+            <li>“Open when…” message cards</li>
+            <li>Photo slideshow</li>
+            <li>Background music toggle</li>
+            <li>Interactive yes/no Valentine button</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footerRow">
+        <div>Made with 💗 for <b>Pratikchhya Chhetri</b></div>
+        <div id="footerDate"></div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modalTop">
+        <div>
+          <h3 id="modalTitle">A Little Valentine’s Note 💗</h3>
+          <p id="modalSubtitle">This is a theme preview. We’ll customize the words + photos after you approve the vibe.</p>
+        </div>
+        <button class="close" id="closeModalBtn" type="button">Close</button>
+      </div>
+      <div class="modalBody">
+        <div class="tile">
+          <b>💞 Placeholder Message</b>
+          <span>
+            “You make my days softer, brighter, and better. This site is just the beginning.”
+          </span>
+        </div>
+        <div class="tile">
+          <b>🌷 Customize Next</b>
+          <span>
+            Tell me: layout style (simple / scrapbook / elegant), how many photos,
+            and the vibe (cute / romantic / funny). I’ll tailor it.
+          </span>
+        </div>
+        <div class="tile">
+          <b>🎀 Color Mood</b>
+          <span id="moodText">
+            Current mood: Beige + Light Pink (soft & cozy).
+          </span>
+        </div>
+        <div class="tile">
+          <b>💌 Valentine’s Button</b>
+          <span>
+            We can add a “Will you be my Valentine?” interaction with a sweet animation.
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Date text
+    const now = new Date();
+    const pretty = now.toLocaleDateString(undefined, { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    document.getElementById('footerDate').textContent = pretty;
+
+    // Hearts generator
+    const heartsEl = document.getElementById('hearts');
+    let heartsOn = true;
+
+    function makeHeart() {
+      if (!heartsOn) return;
+      const h = document.createElement('div');
+      h.className = 'heart';
+
+      const size = 10 + Math.random() * 18;
+      h.style.width = size + 'px';
+      h.style.height = size + 'px';
+
+      const left = Math.random() * 100;
+      h.style.left = left + 'vw';
+      h.style.bottom = (-10 - Math.random() * 20) + 'px';
+
+      const dur = 6 + Math.random() * 8;
+      h.style.animationDuration = dur + 's';
+
+      const delay = Math.random() * 2;
+      h.style.animationDelay = delay + 's';
+
+      // slight color variance
+      const alpha = 0.35 + Math.random() * 0.35;
+      h.style.background = `rgba(242,169,184,${alpha})`;
+
+      heartsEl.appendChild(h);
+
+      // cleanup
+      const life = (dur + delay) * 1000;
+      setTimeout(() => h.remove(), life);
+    }
+
+    let heartInterval = setInterval(makeHeart, 220);
+    for (let i=0; i<12; i++) setTimeout(makeHeart, i*120);
+
+    // Modal logic
+    const overlay = document.getElementById('overlay');
+    const openLetterBtn = document.getElementById('openLetterBtn');
+    const openSurpriseBtn = document.getElementById('openSurpriseBtn');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    function openModal() {
+      overlay.classList.add('show');
+    }
+    function closeModal() {
+      overlay.classList.remove('show');
+    }
+
+    openLetterBtn.addEventListener('click', openModal);
+    openSurpriseBtn.addEventListener('click', openModal);
+    closeModalBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    // Toggle hearts
+    document.getElementById('toggleHeartsBtn').addEventListener('click', () => {
+      heartsOn = !heartsOn;
+      heartsEl.style.display = heartsOn ? 'block' : 'none';
+    });
+
+    // Mood switch (soft beige/pink -> more rosy)
+    let mood = 0;
+    const moodText = document.getElementById('moodText');
+    document.getElementById('changeMoodBtn').addEventListener('click', () => {
+      mood = (mood + 1) % 2;
+      if (mood === 0) {
+        document.documentElement.style.setProperty('--beige', '#f6efe6');
+        document.documentElement.style.setProperty('--beige-2', '#efe3d6');
+        document.documentElement.style.setProperty('--pink', '#f7c6d0');
+        document.documentElement.style.setProperty('--pink-2', '#f2a9b8');
+        document.documentElement.style.setProperty('--rose', '#d77b8a');
+        moodText.textContent = 'Current mood: Beige + Light Pink (soft & cozy).';
+      } else {
+        document.documentElement.style.setProperty('--beige', '#f8f0ea');
+        document.documentElement.style.setProperty('--beige-2', '#f1d9d2');
+        document.documentElement.style.setProperty('--pink', '#ffc2d2');
+        document.documentElement.style.setProperty('--pink-2', '#ff9ab5');
+        document.documentElement.style.setProperty('--rose', '#c85f78');
+        moodText.textContent = 'Current mood: Rosy Pink (a bit more bold & Valentine-y).';
+      }
+    });
+
+    // Tiny top message
+    const todayText = document.getElementById('todayText');
+    todayText.textContent = `💌 ${pretty}`;
+  </script>
+</body>
+</html>
