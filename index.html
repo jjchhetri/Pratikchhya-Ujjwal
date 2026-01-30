@@ -387,123 +387,103 @@
     /* =========================
        NEW: Valentine Ask Overlay
        ========================= */
-    .askOverlay{
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      z-index: 60;
-      background:
-        radial-gradient(900px 520px at 25% 20%, rgba(247,198,208,.55), transparent 60%),
-        radial-gradient(900px 520px at 85% 40%, rgba(246,239,230,.85), transparent 60%),
-        rgba(20,16,16,.22);
-      backdrop-filter: blur(10px);
-    }
-    .askCard{
-      width: min(860px, 100%);
-      border-radius: 30px;
-      border: 1px solid rgba(42,35,34,.12);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 22px 90px rgba(42,35,34,.22);
-      overflow: hidden;
-      position: relative;
-    }
-    .askTop{
-      padding: 18px 18px 14px;
-      border-bottom: 1px solid rgba(42,35,34,.08);
-      background:
-        radial-gradient(600px 240px at 10% 20%, rgba(247,198,208,.58), transparent 60%),
-        rgba(246,239,230,.55);
-    }
-    .askTop .mini{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(42,35,34,.10);
-      background: rgba(255,255,255,.35);
-      font-size: 13px;
-      font-weight: 750;
-    }
-    .askBody{
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-    @media (max-width: 860px){
-      .askBody{ grid-template-columns: 1fr; }
-    }
-    .askTitle{
-      margin: 12px 0 8px;
-      font-size: clamp(30px, 4.2vw, 54px);
-      letter-spacing: -0.8px;
-      line-height: 1.02;
-    }
-    .askSub{
-      margin: 0;
-      opacity: .88;
-      font-size: 15px;
-      line-height: 1.6;
-      max-width: 60ch;
-    }
-    .askBtns{
-      margin-top: 16px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .askBtn{
-      border: 1px solid rgba(42,35,34,.12);
-      background: rgba(255,255,255,.58);
-      padding: 12px 14px;
-      border-radius: 16px;
-      cursor:pointer;
-      font-weight: 900;
-      transition: transform .15s ease, filter .15s ease;
-      user-select: none;
-    }
-    .askBtn:hover{ transform: translateY(-1px); }
-    .askBtn:active{ transform: translateY(0px) scale(.99); }
-    .askBtn.yes{
-      background: linear-gradient(180deg, rgba(247,198,208,.92), rgba(242,169,184,.90));
-      border-color: rgba(215,123,138,.25);
-    }
-    .askBtn.no{
-      background: rgba(255,255,255,.55);
-    }
-    .askRight{
-      border-radius: 22px;
-      border: 1px dashed rgba(215,123,138,.28);
-      background:
-        radial-gradient(14px 14px at 20% 30%, rgba(242,169,184,.55), transparent 60%),
-        radial-gradient(14px 14px at 60% 55%, rgba(247,198,208,.55), transparent 60%),
-        radial-gradient(14px 14px at 82% 35%, rgba(215,123,138,.35), transparent 60%),
-        rgba(246,239,230,.35);
-      padding: 14px;
-      position: relative;
-      overflow: hidden;
-      min-height: 180px;
-    }
-    .askRight .label{
-      font-weight: 900;
-      margin-bottom: 8px;
-    }
-    .askRight .tiny{
-      font-size: 13px;
-      line-height: 1.55;
-      opacity: .86;
-    }
+    /* =========================
+   NEW: Valentine Ask Overlay (MINIMAL)
+   ========================= */
+.askOverlay{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 60;
+  background:
+    radial-gradient(900px 520px at 25% 20%, rgba(247,198,208,.55), transparent 60%),
+    radial-gradient(900px 520px at 85% 40%, rgba(246,239,230,.85), transparent 60%),
+    rgba(20,16,16,.22);
+  backdrop-filter: blur(10px);
+}
+.askCard{
+  width: min(680px, 100%);
+  border-radius: 30px;
+  border: 1px solid rgba(42,35,34,.12);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 22px 90px rgba(42,35,34,.22);
+  overflow: hidden;
+  position: relative;
+}
+.askTop{
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(42,35,34,.08);
+  background:
+    radial-gradient(600px 240px at 10% 20%, rgba(247,198,208,.58), transparent 60%),
+    rgba(246,239,230,.55);
+}
+.askTop .mini{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(42,35,34,.10);
+  background: rgba(255,255,255,.35);
+  font-size: 16px;
+  font-weight: 900;
+}
 
-    /* No-button dodge (cute) */
-    .askBtn.no.dodge{
-      position: relative;
-    }
+.askBody.single{
+  padding: 26px 18px 24px;
+}
+.askCenter{
+  text-align: center;
+}
+.askTitle{
+  margin: 8px 0 8px;
+  font-size: clamp(36px, 5vw, 58px);
+  letter-spacing: -0.8px;
+  line-height: 1.02;
+}
+.askSub{
+  margin: 0;
+  opacity: .88;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.askBtns{
+  margin-top: 18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+}
+.askBtn{
+  border: 1px solid rgba(42,35,34,.12);
+  background: rgba(255,255,255,.58);
+  padding: 12px 16px;
+  border-radius: 16px;
+  cursor:pointer;
+  font-weight: 900;
+  transition: transform .15s ease, filter .15s ease;
+  user-select: none;
+}
+.askBtn:hover{ transform: translateY(-1px); }
+.askBtn:active{ transform: translateY(0px) scale(.99); }
+.askBtn.yes{
+  background: linear-gradient(180deg, rgba(247,198,208,.92), rgba(242,169,184,.90));
+  border-color: rgba(215,123,138,.25);
+}
+
+.tinyHint{
+  margin-top: 14px;
+  font-size: 12px;
+  opacity: .65;
+  letter-spacing: .25px;
+  text-transform: lowercase;
+}
 
     /* =========================
        NEW: Celebration FX Layer
@@ -775,39 +755,28 @@
     </div>
   </div>
 
-  <!-- NEW: Ask Overlay -->
-  <div class="askOverlay" id="askOverlay" role="dialog" aria-modal="true" aria-labelledby="askTitle">
-    <div class="askCard">
-      <div class="askTop">
-        <span class="mini">💗 A question for you, Pratikchhya</span>
-      </div>
-      <div class="askBody">
-        <div>
-          <h2 class="askTitle" id="askTitle">Be my Valentine?</h2>
-          <p class="askSub">
-            Press <b>Yes</b>… and I’ll hit you with flowers, glitter, and then a little video of us.
-          </p>
+ <!-- NEW: Ask Overlay -->
+<div class="askOverlay" id="askOverlay" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+  <div class="askCard">
+    <div class="askTop">
+      <span class="mini">💗</span>
+    </div>
 
-          <div class="askBtns">
-            <button class="askBtn yes" id="yesBtn" type="button">Yes 💞</button>
-            <button class="askBtn no dodge" id="noBtn" type="button">No 🙈</button>
-            <button class="askBtn" id="skipBtn" type="button" title="If you want to browse first">Skip</button>
-          </div>
+    <div class="askBody single">
+      <div class="askCenter">
+        <h2 class="askTitle" id="askTitle">Pratikchhya</h2>
+        <p class="askSub">Will you be my Valentine?</p>
+
+        <div class="askBtns">
+          <button class="askBtn yes" id="yesBtn" type="button">Yes 💞</button>
+          <button class="askBtn no dodge" id="noBtn" type="button">No 🙈</button>
         </div>
 
-        <div class="askRight" aria-hidden="true">
-          <div class="label">Preview</div>
-          <div class="tiny">
-            • Soft beige + pink<br/>
-            • Hearts floating<br/>
-            • Surprise modal<br/>
-            • Celebration FX on “Yes”<br/>
-            • Video pops after the sparkles ✨
-          </div>
-        </div>
+        <div class="tinyHint">tap “yes”</div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- NEW: FX Layer -->
   <div class="fxLayer" id="fxLayer" aria-hidden="true"></div>
@@ -930,8 +899,7 @@
     const askOverlay = document.getElementById('askOverlay');
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
-    const skipBtn = document.getElementById('skipBtn');
-
+    
     const fxLayer = document.getElementById('fxLayer');
 
     const videoOverlay = document.getElementById('videoOverlay');
@@ -953,11 +921,7 @@
     noBtn.addEventListener('mouseenter', dodgeNo);
     noBtn.addEventListener('click', dodgeNo);
 
-    skipBtn.addEventListener('click', () => {
-      hideAsk();
-      // reset any transforms
-      noBtn.style.transform = '';
-    });
+    
 
     function randBetween(a,b){ return a + Math.random()*(b-a); }
 
@@ -1048,4 +1012,5 @@
   </script>
 </body>
 </html>
+
 
