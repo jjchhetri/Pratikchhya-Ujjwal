@@ -41,6 +41,7 @@
       pointer-events:none;
       opacity:.85;
       filter: drop-shadow(0 8px 18px rgba(42,35,34,.12));
+      z-index: 5;
     }
     .heart{
       position:absolute;
@@ -299,7 +300,7 @@
       font-size: 13px;
     }
 
-    /* modal */
+    /* existing modal */
     .overlay{
       position:fixed; inset:0;
       background: rgba(20,16,16,.30);
@@ -367,7 +368,6 @@
     .tile b{ display:block; margin-bottom:6px; }
     .tile span{ font-size: 13px; opacity:.86; line-height: 1.5; display:block; }
 
-    /* small cute floating corner hearts */
     .cornerHearts{
       position:absolute;
       inset:auto -40px -40px auto;
@@ -384,10 +384,245 @@
       pointer-events:none;
     }
 
+    /* =========================
+       NEW: Valentine Ask Overlay
+       ========================= */
+    .askOverlay{
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 60;
+      background:
+        radial-gradient(900px 520px at 25% 20%, rgba(247,198,208,.55), transparent 60%),
+        radial-gradient(900px 520px at 85% 40%, rgba(246,239,230,.85), transparent 60%),
+        rgba(20,16,16,.22);
+      backdrop-filter: blur(10px);
+    }
+    .askCard{
+      width: min(860px, 100%);
+      border-radius: 30px;
+      border: 1px solid rgba(42,35,34,.12);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 22px 90px rgba(42,35,34,.22);
+      overflow: hidden;
+      position: relative;
+    }
+    .askTop{
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid rgba(42,35,34,.08);
+      background:
+        radial-gradient(600px 240px at 10% 20%, rgba(247,198,208,.58), transparent 60%),
+        rgba(246,239,230,.55);
+    }
+    .askTop .mini{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(255,255,255,.35);
+      font-size: 13px;
+      font-weight: 750;
+    }
+    .askBody{
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 860px){
+      .askBody{ grid-template-columns: 1fr; }
+    }
+    .askTitle{
+      margin: 12px 0 8px;
+      font-size: clamp(30px, 4.2vw, 54px);
+      letter-spacing: -0.8px;
+      line-height: 1.02;
+    }
+    .askSub{
+      margin: 0;
+      opacity: .88;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 60ch;
+    }
+    .askBtns{
+      margin-top: 16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .askBtn{
+      border: 1px solid rgba(42,35,34,.12);
+      background: rgba(255,255,255,.58);
+      padding: 12px 14px;
+      border-radius: 16px;
+      cursor:pointer;
+      font-weight: 900;
+      transition: transform .15s ease, filter .15s ease;
+      user-select: none;
+    }
+    .askBtn:hover{ transform: translateY(-1px); }
+    .askBtn:active{ transform: translateY(0px) scale(.99); }
+    .askBtn.yes{
+      background: linear-gradient(180deg, rgba(247,198,208,.92), rgba(242,169,184,.90));
+      border-color: rgba(215,123,138,.25);
+    }
+    .askBtn.no{
+      background: rgba(255,255,255,.55);
+    }
+    .askRight{
+      border-radius: 22px;
+      border: 1px dashed rgba(215,123,138,.28);
+      background:
+        radial-gradient(14px 14px at 20% 30%, rgba(242,169,184,.55), transparent 60%),
+        radial-gradient(14px 14px at 60% 55%, rgba(247,198,208,.55), transparent 60%),
+        radial-gradient(14px 14px at 82% 35%, rgba(215,123,138,.35), transparent 60%),
+        rgba(246,239,230,.35);
+      padding: 14px;
+      position: relative;
+      overflow: hidden;
+      min-height: 180px;
+    }
+    .askRight .label{
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .askRight .tiny{
+      font-size: 13px;
+      line-height: 1.55;
+      opacity: .86;
+    }
+
+    /* No-button dodge (cute) */
+    .askBtn.no.dodge{
+      position: relative;
+    }
+
+    /* =========================
+       NEW: Celebration FX Layer
+       ========================= */
+    .fxLayer{
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 70;
+      display: none;
+    }
+    .fxLayer.show{ display:block; }
+
+    .glitter{
+      position:absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 0 18px rgba(255,255,255,.75);
+      animation: glitterPop 1200ms ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes glitterPop{
+      0%   { transform: translate(0,0) scale(.2); opacity: 0; }
+      15%  { opacity: .95; }
+      100% { transform: translate(var(--dx), var(--dy)) scale(1.1); opacity: 0; }
+    }
+
+    .flower{
+      position:absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(247,198,208,.95);
+      border: 1px solid rgba(215,123,138,.25);
+      filter: drop-shadow(0 10px 18px rgba(42,35,34,.12));
+      animation: flowerFall 1800ms ease-out forwards;
+      opacity: 0;
+    }
+    .flower:before, .flower:after{
+      content:"";
+      position:absolute;
+      inset:-6px;
+      border-radius: 999px;
+      background: rgba(242,169,184,.55);
+      filter: blur(.2px);
+    }
+    .flower:after{
+      inset:-10px;
+      background: rgba(255,255,255,.35);
+      filter: blur(1px);
+    }
+    @keyframes flowerFall{
+      0%   { transform: translate(0,0) rotate(0deg) scale(.4); opacity: 0; }
+      12%  { opacity: .95; }
+      100% { transform: translate(var(--dx), var(--dy)) rotate(380deg) scale(1.05); opacity: 0; }
+    }
+
+    /* =========================
+       NEW: Video Modal
+       ========================= */
+    .videoOverlay{
+      position:fixed; inset:0;
+      background: rgba(20,16,16,.38);
+      backdrop-filter: blur(8px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding: 18px;
+      z-index: 80;
+    }
+    .videoOverlay.show{ display:flex; }
+    .videoModal{
+      width:min(980px, 100%);
+      border-radius: 26px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(42,35,34,.12);
+      box-shadow: 0 18px 80px rgba(42,35,34,.22);
+      overflow:hidden;
+    }
+    .videoTop{
+      padding: 14px 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(42,35,34,.08);
+      background:
+        radial-gradient(520px 200px at 10% 20%, rgba(247,198,208,.55), transparent 60%),
+        rgba(246,239,230,.45);
+    }
+    .videoTop h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .videoTop p{
+      margin: 6px 0 0;
+      font-size: 13px;
+      line-height: 1.45;
+      opacity:.85;
+    }
+    .videoBody{
+      padding: 14px;
+    }
+    video{
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid rgba(42,35,34,.10);
+      background: rgba(246,239,230,.45);
+      display:block;
+    }
+
     /* accessibility: reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .heart, .sparkle:after { animation: none !important; }
-      .btn, .pill button { transition: none !important; }
+      .heart, .sparkle:after, .glitter, .flower { animation: none !important; }
+      .btn, .pill button, .askBtn { transition: none !important; }
     }
   </style>
 </head>
@@ -421,8 +656,8 @@
           <div class="kicker">💗 Valentine’s Theme • Beige + Pink • Soft & Cozy</div>
           <h1>Hi Pratikchhya, this little corner of the internet is yours.</h1>
           <p class="sub">
-            This is a starter theme — you’ll add your photos, your words, and your layout next.
-            For now it’s got the vibe: soft colors, sweet motion, and a romantic feel.
+            This is your Valentine’s site. The first thing you’ll see is a question — and if you press yes…
+            you’ll get flowers, glitter, and a video of us.
           </p>
 
           <div class="ctaRow">
@@ -436,13 +671,12 @@
           <div class="sideTitle">Preview Panel</div>
           <div class="sparkle" aria-hidden="true"></div>
           <p class="note">
-            Placeholders are on purpose — once you tell me what layout + pictures + words you want,
-            I’ll plug them in and make it look *finished*.
+            Your custom first page is now: “Be my Valentine?” + Yes/No + celebration + video.
           </p>
           <p class="note" style="margin-top:-6px;">
             ✅ Works on mobile<br/>
-            ✅ Clean, modern “love letter” vibe<br/>
-            ✅ Easy to customize
+            ✅ Keeps all notes & prompts<br/>
+            ✅ Video pops after animation
           </p>
         </aside>
       </div>
@@ -501,7 +735,7 @@
     </footer>
   </main>
 
-  <!-- Modal -->
+  <!-- Existing Modal -->
   <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal">
       <div class="modalTop">
@@ -537,6 +771,66 @@
             We can add a “Will you be my Valentine?” interaction with a sweet animation.
           </span>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Ask Overlay -->
+  <div class="askOverlay" id="askOverlay" role="dialog" aria-modal="true" aria-labelledby="askTitle">
+    <div class="askCard">
+      <div class="askTop">
+        <span class="mini">💗 A question for you, Pratikchhya</span>
+      </div>
+      <div class="askBody">
+        <div>
+          <h2 class="askTitle" id="askTitle">Be my Valentine?</h2>
+          <p class="askSub">
+            Press <b>Yes</b>… and I’ll hit you with flowers, glitter, and then a little video of us.
+          </p>
+
+          <div class="askBtns">
+            <button class="askBtn yes" id="yesBtn" type="button">Yes 💞</button>
+            <button class="askBtn no dodge" id="noBtn" type="button">No 🙈</button>
+            <button class="askBtn" id="skipBtn" type="button" title="If you want to browse first">Skip</button>
+          </div>
+        </div>
+
+        <div class="askRight" aria-hidden="true">
+          <div class="label">Preview</div>
+          <div class="tiny">
+            • Soft beige + pink<br/>
+            • Hearts floating<br/>
+            • Surprise modal<br/>
+            • Celebration FX on “Yes”<br/>
+            • Video pops after the sparkles ✨
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: FX Layer -->
+  <div class="fxLayer" id="fxLayer" aria-hidden="true"></div>
+
+  <!-- NEW: Video Modal -->
+  <div class="videoOverlay" id="videoOverlay" role="dialog" aria-modal="true" aria-labelledby="videoTitle">
+    <div class="videoModal">
+      <div class="videoTop">
+        <div>
+          <h3 id="videoTitle">Us 💗</h3>
+          <p>After the flowers & glitter… this is the part that hits the heart.</p>
+        </div>
+        <button class="close" id="closeVideoBtn" type="button">Close</button>
+      </div>
+      <div class="videoBody">
+        <!-- Replace src later with your real file path -->
+        <video id="valVideo" controls preload="metadata">
+          <source src="assets/us.mp4" type="video/mp4">
+          Sorry — your browser can’t play this video.
+        </video>
+        <p style="margin:10px 2px 0; font-size:13px; opacity:.82; line-height:1.5;">
+          Video placeholder path is <b>assets/us.mp4</b>. We’ll swap it when you send the video.
+        </p>
       </div>
     </div>
   </div>
@@ -581,21 +875,17 @@
       setTimeout(() => h.remove(), life);
     }
 
-    let heartInterval = setInterval(makeHeart, 220);
+    setInterval(makeHeart, 220);
     for (let i=0; i<12; i++) setTimeout(makeHeart, i*120);
 
-    // Modal logic
+    // Existing modal logic
     const overlay = document.getElementById('overlay');
     const openLetterBtn = document.getElementById('openLetterBtn');
     const openSurpriseBtn = document.getElementById('openSurpriseBtn');
     const closeModalBtn = document.getElementById('closeModalBtn');
 
-    function openModal() {
-      overlay.classList.add('show');
-    }
-    function closeModal() {
-      overlay.classList.remove('show');
-    }
+    function openModal() { overlay.classList.add('show'); }
+    function closeModal() { overlay.classList.remove('show'); }
 
     openLetterBtn.addEventListener('click', openModal);
     openSurpriseBtn.addEventListener('click', openModal);
@@ -609,7 +899,7 @@
       heartsEl.style.display = heartsOn ? 'block' : 'none';
     });
 
-    // Mood switch (soft beige/pink -> more rosy)
+    // Mood switch
     let mood = 0;
     const moodText = document.getElementById('moodText');
     document.getElementById('changeMoodBtn').addEventListener('click', () => {
@@ -632,8 +922,130 @@
     });
 
     // Tiny top message
-    const todayText = document.getElementById('todayText');
-    todayText.textContent = `💌 ${pretty}`;
+    document.getElementById('todayText').textContent = `💌 ${pretty}`;
+
+    // =========================
+    // NEW: Ask overlay + effects + video
+    // =========================
+    const askOverlay = document.getElementById('askOverlay');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const skipBtn = document.getElementById('skipBtn');
+
+    const fxLayer = document.getElementById('fxLayer');
+
+    const videoOverlay = document.getElementById('videoOverlay');
+    const closeVideoBtn = document.getElementById('closeVideoBtn');
+    const valVideo = document.getElementById('valVideo');
+
+    function hideAsk() {
+      askOverlay.style.display = 'none';
+    }
+
+    // Cute "No" dodge: moves around a bit
+    function dodgeNo() {
+      const maxX = Math.min(220, window.innerWidth - 180);
+      const maxY = 120;
+      const dx = (Math.random() * maxX) - (maxX/2);
+      const dy = (Math.random() * maxY) - (maxY/2);
+      noBtn.style.transform = `translate(${dx}px, ${dy}px)`;
+    }
+    noBtn.addEventListener('mouseenter', dodgeNo);
+    noBtn.addEventListener('click', dodgeNo);
+
+    skipBtn.addEventListener('click', () => {
+      hideAsk();
+      // reset any transforms
+      noBtn.style.transform = '';
+    });
+
+    function randBetween(a,b){ return a + Math.random()*(b-a); }
+
+    function spawnFXBurst(countGlitter = 60, countFlowers = 28) {
+      fxLayer.innerHTML = '';
+      fxLayer.classList.add('show');
+
+      const cx = window.innerWidth * 0.5;
+      const cy = window.innerHeight * 0.45;
+
+      // glitter
+      for (let i=0; i<countGlitter; i++){
+        const g = document.createElement('div');
+        g.className = 'glitter';
+        const x = cx + randBetween(-40, 40);
+        const y = cy + randBetween(-40, 40);
+        g.style.left = x + 'px';
+        g.style.top = y + 'px';
+
+        const dx = randBetween(-420, 420) + 'px';
+        const dy = randBetween(-260, 520) + 'px';
+        g.style.setProperty('--dx', dx);
+        g.style.setProperty('--dy', dy);
+
+        const size = randBetween(4, 10);
+        g.style.width = size + 'px';
+        g.style.height = size + 'px';
+
+        const delay = randBetween(0, 220);
+        g.style.animationDelay = delay + 'ms';
+
+        fxLayer.appendChild(g);
+      }
+
+      // flowers
+      for (let i=0; i<countFlowers; i++){
+        const f = document.createElement('div');
+        f.className = 'flower';
+        const x = cx + randBetween(-60, 60);
+        const y = cy + randBetween(-60, 60);
+        f.style.left = x + 'px';
+        f.style.top = y + 'px';
+
+        const dx = randBetween(-460, 460) + 'px';
+        const dy = randBetween(220, 760) + 'px';
+        f.style.setProperty('--dx', dx);
+        f.style.setProperty('--dy', dy);
+
+        const size = randBetween(14, 26);
+        f.style.width = size + 'px';
+        f.style.height = size + 'px';
+
+        const delay = randBetween(0, 260);
+        f.style.animationDelay = delay + 'ms';
+
+        fxLayer.appendChild(f);
+      }
+
+      // stop showing layer after animation ends
+      setTimeout(() => {
+        fxLayer.classList.remove('show');
+        fxLayer.innerHTML = '';
+      }, 2200);
+    }
+
+    function openVideo() {
+      videoOverlay.classList.add('show');
+      try { valVideo.play(); } catch(e) {}
+    }
+    function closeVideo() {
+      videoOverlay.classList.remove('show');
+      try { valVideo.pause(); valVideo.currentTime = 0; } catch(e) {}
+    }
+
+    closeVideoBtn.addEventListener('click', closeVideo);
+    videoOverlay.addEventListener('click', (e) => { if (e.target === videoOverlay) closeVideo(); });
+
+    yesBtn.addEventListener('click', () => {
+      // hide ask, blast effects, then show video
+      hideAsk();
+      noBtn.style.transform = '';
+      spawnFXBurst();
+
+      setTimeout(() => {
+        openVideo();
+      }, 1700);
+    });
   </script>
 </body>
 </html>
+
